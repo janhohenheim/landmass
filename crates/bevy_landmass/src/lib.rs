@@ -2,13 +2,16 @@
 
 use std::{collections::HashMap, marker::PhantomData, sync::Arc};
 
-use bevy::{
-  asset::{Asset, AssetApp, Handle},
-  ecs::schedule::IntoScheduleConfigs,
-  prelude::{Component, Entity, Plugin, Query, Res, SystemSet, Update},
-  reflect::TypePath,
-  time::Time,
+use bevy_app::{Plugin, Update};
+use bevy_asset::{Asset, AssetApp, Handle};
+use bevy_ecs::{
+  component::Component,
+  entity::Entity,
+  schedule::{IntoScheduleConfigs, SystemSet},
+  system::{Query, Res},
 };
+use bevy_reflect::TypePath;
+use bevy_time::Time;
 use coords::{CoordinateSystem, ThreeD, TwoD};
 use landmass::{AgentId, CharacterId, IslandId};
 
@@ -88,7 +91,7 @@ pub type Landmass2dPlugin = LandmassPlugin<TwoD>;
 pub type Landmass3dPlugin = LandmassPlugin<ThreeD>;
 
 impl<CS: CoordinateSystem> Plugin for LandmassPlugin<CS> {
-  fn build(&self, app: &mut bevy::prelude::App) {
+  fn build(&self, app: &mut bevy_app::App) {
     app.init_asset::<NavMesh<CS>>();
     app.configure_sets(
       Update,
