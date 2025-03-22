@@ -4,10 +4,8 @@ use std::{collections::HashMap, marker::PhantomData, sync::Arc};
 
 use bevy::{
   asset::{Asset, AssetApp, Handle},
-  prelude::{
-    Component, Entity, IntoSystemConfigs, IntoSystemSetConfigs, Plugin, Query,
-    Res, SystemSet, Update,
-  },
+  ecs::schedule::IntoScheduleConfigs,
+  prelude::{Component, Entity, Plugin, Query, Res, SystemSet, Update},
   reflect::TypePath,
   time::Time,
 };
